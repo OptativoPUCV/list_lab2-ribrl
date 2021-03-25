@@ -49,11 +49,10 @@ void * nextList(List * list) {
     if(list->current && list->current->data ) {
 		list->current = list->current->next;
 		if (list->current->next == NULL) {
-			list->current = NULL;
+			return NULL;
 		}
 		return (void*)list->current->data;
 	}
-	
     return NULL;
 }
 

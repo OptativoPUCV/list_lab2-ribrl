@@ -12,16 +12,16 @@ struct Node {
 };
 
 struct List {
-    Node * head;
-    Node * tail;
-    Node * current;
+    Node * head;//nodo inicial
+    Node * tail;//nodo final
+    Node * current;//nodo actual
 };
 
 typedef List List;
 
 Node * createNode(const void * data) {
     Node * new = (Node *)malloc(sizeof(Node));
-    assert(new != NULL);
+    assert(new != NULL);//si el nodo existe no hace nada
     new->data = data;
     new->prev = NULL;
     new->next = NULL;
@@ -29,7 +29,11 @@ Node * createNode(const void * data) {
 }
 
 List * createList() {
-     return NULL;
+	List * list = (List*) calloc (1, sizeof(List));
+	list->head = NULL;
+	list->current = NULL;
+	list->tail = NULL;
+    return list;
 }
 
 void * firstList(List * list) {

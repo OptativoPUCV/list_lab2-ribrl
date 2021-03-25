@@ -34,9 +34,14 @@ List * createList() {
 	list->current = NULL;
 	list->tail = NULL;
     return list;
+	//como la lista está vacía el primer, último y actual elemento son NULL
 }
 
 void * firstList(List * list) {
+	if(list->head && list->head->data) {
+		list->current = list->head;
+		return &list->head->data;
+	}
     return NULL;
 }
 

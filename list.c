@@ -80,7 +80,10 @@ void pushBack(List * list, const void * data) {
 }
 
 void pushCurrent(List * list, const void * data) {
+	list->current = list->current;
+    pushCurrent(list,data);
 }
+
 
 void * popFront(List * list) {
     list->current = list->head;

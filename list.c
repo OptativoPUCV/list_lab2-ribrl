@@ -46,6 +46,10 @@ void * firstList(List * list) {
 }
 
 void * nextList(List * list) {
+    if(list->tail && list->tail->data) {
+		list->current = list->tail;
+		return &list->tail->data;
+	}
     return NULL;
 }
 

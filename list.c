@@ -38,7 +38,7 @@ List * createList() {
 }
 
 void * firstList(List * list) {
-	if(list->head && list->head->data) {
+	if (list->head && list->head->data) {
 		list->current = list->head;
 		return (void*)list->head->data;
 	}
@@ -98,9 +98,16 @@ void pushBack(List * list, const void * data) {
 }
 
 void pushCurrent(List * list, const void * data) {
-	//si el current está en la cabeza, al frente o al final.
-	//Node* newNode = createNode (data); 
+	Node* newNode = createNode (data);
 	
+	if (list->head == NULL) {
+		list->head = newNode;
+	}
+	else 
+	{
+		newNode->next = list->current->next;
+		list->current = newNode;
+	}
 }
 
 

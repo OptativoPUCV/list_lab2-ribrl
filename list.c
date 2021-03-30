@@ -112,6 +112,7 @@ void pushCurrent(List * list, const void * data) {
 		newNode->prev = list->head;
 		newNode->next = list->current->next;
 		list->current->next = newNode;
+		list->tail = newNode;
 	}
 
 	//list->current->next = NULL; 	

@@ -75,8 +75,8 @@ void * prevList(List * list) {
 
 void pushFront(List * list, const void * data) {
 	Node* newNode = createNode (data);
-	newNode->data = data;
 	newNode->prev = NULL;
+	newNode->data = data;
 	newNode->next = list->head;
 
 	if (list->head == NULL) {
@@ -100,9 +100,13 @@ void pushBack(List * list, const void * data) {
 void pushCurrent(List * list, const void * data) {
 	//si el current está en la cabeza, al frente o al final.
 	Node* newNode = createNode (data);
+	//newNode->prev = ;
+
 	if (list->head == NULL) 
 	{
+		list->head = newNode; 
 		list->current->next = newNode;
+		list->tail = newNode;
 	} 
 	else 
 	{

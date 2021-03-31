@@ -103,6 +103,8 @@ void pushCurrent(List * list, const void * data) {
 	if (list->head == NULL) {
 		list->head = newNode;
 		list->tail = newNode;
+		newNode->prev = NULL;
+		newNode->next = NULL;
 	}
 	else 
 	{

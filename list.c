@@ -113,10 +113,12 @@ void pushCurrent(List * list, const void * data) {
 			newNode->next = NULL;
 			list->current->next = newNode;
 			list->tail = newNode;
-		}
+		}else{
+      newNode->prev = list->current;
+		  newNode->next = list->current->next;
+      //aqui tefalta completar 
 
-		newNode->prev = list->current;
-		newNode->next = list->current->next;
+    }   
 	}
 }
 

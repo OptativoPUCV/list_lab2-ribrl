@@ -170,8 +170,9 @@ void * popCurrent(List * list) {
 	{
 		return NULL;
 	}
-	free (list->current);
+	//free (list->current);
 	return (void*)list->current;
+	free (list->current);
 }
 
 void cleanList(List * list) {

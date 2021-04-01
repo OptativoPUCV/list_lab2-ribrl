@@ -133,31 +133,36 @@ void * popBack(List * list) {
 }
 
 void * popCurrent(List * list) {
+//Node* dato = createNode (dato);
+//(void*) dato = NULL;
+
 	if (list->current != NULL) {
 		if (list->head == list->tail) {
 			list->head = NULL;
 			list->tail = NULL;
-			list->current = NULL;
-			//free (list->head);
+			//list->current = NULL;
+			//(void*) dato = list->current->data;
+
 		}
 		else if (list->current == list->head ) {
 			list->head = list->head->next;
 			list->head->prev = NULL;
-			list->current = list->head->next;
-			//free (list->head);
+			//list->current = list->head->next;
+			//dato = list->current;
+
 		}
 		else if (list->current == list->tail) {
 			list->tail = list->tail->prev;
 			list->tail->prev->next = NULL;
-			list->current = NULL;
-			//free (list->tail);
+			//list->current = NULL;
+			//dato = list->current;
 	
 		}
 		else {//si el current esta en la lista
 			list->current->prev->next = list->current->next;
 			list->current->next->prev = list->current->prev;
-			list->current = list->current->next;
-			//free (list->current);
+			//list->current = list->current->next;
+			//dato = list->current;
 		}
 	}
 	//si no existe el current
@@ -166,7 +171,7 @@ void * popCurrent(List * list) {
 		return NULL;
 	}
 	free (list->current);
-	return (void*)list->current->data;
+	return (void*)list->current;
 }
 
 void cleanList(List * list) {

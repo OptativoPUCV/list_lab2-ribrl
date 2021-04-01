@@ -122,7 +122,6 @@ void pushCurrent(List * list, const void * data) {
 	}
 }
 
-
 void * popFront(List * list) {
     list->current = list->head;
     return popCurrent(list);
@@ -134,7 +133,17 @@ void * popBack(List * list) {
 }
 
 void * popCurrent(List * list) {
-	//si el current está al principio
+	//si sólo hay un elemento
+	if (list->head == list->tail ) {
+		list->head->prev = NULL;
+		list->head->next = NULL;
+		return (void*)list->head->data;
+		free (list->head);
+		list->current = NULL;
+	}
+	else 
+	{
+	//si el current está al inicio
 	if (list->current == list->head ) {
 		list->head = list->head->next;
 		list->head->prev = NULL;
@@ -142,8 +151,6 @@ void * popCurrent(List * list) {
 		free (list->head);
 		list->current = list->head->next;
 	}
-	else 
-	{
 	//si el current está al final
 		if (list->current == list->tail){
 			list->tail = list->tail->prev;

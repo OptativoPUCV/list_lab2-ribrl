@@ -136,6 +136,8 @@ void * popCurrent(List * list) {
 	//si sólo hay un elemento
 	if (list->head == list->tail ) {
 		list->head->prev = NULL;
+		list->head->next = NULL;
+		list->tail->prev = NULL;
 		list->tail->next = NULL;
 		return (void*)list->head->data;
 		free (list->head);

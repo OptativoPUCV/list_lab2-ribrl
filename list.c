@@ -136,7 +136,7 @@ void * popCurrent(List * list) {
 	//si sólo hay un elemento
 	if (list->head == list->tail ) {
 		list->head->prev = NULL;
-		list->head->next = NULL;
+		list->tail->next = NULL;
 		return (void*)list->head->data;
 		free (list->head);
 		list->current = NULL;
@@ -144,13 +144,13 @@ void * popCurrent(List * list) {
 	else 
 	{
 	//si el current está al inicio
-	if (list->current == list->head ) {
-		list->head = list->head->next;
-		list->head->prev = NULL;
-		return (void*)list->head->data;
-		free (list->head);
-		list->current = list->head->next;
-	}
+		if (list->current == list->head ) {
+			list->head = list->head->next;
+			list->head->prev = NULL;
+			return (void*)list->head->data;
+			free (list->head);
+			list->current = list->head->next;
+		}
 	//si el current está al final
 		if (list->current == list->tail){
 			list->tail = list->tail->prev;
@@ -159,7 +159,7 @@ void * popCurrent(List * list) {
 			free (list->tail);
 			list->current = NULL;
 		}
-		//si el current está en la lista 
+	//si el current está en la lista 
 		list->current->prev->next = list->current->next;
 		list->current->next->prev = list->current->prev;
 		return (void*)list->current->data;

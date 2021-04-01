@@ -138,26 +138,26 @@ void * popCurrent(List * list) {
 			list->head = NULL;
 			list->tail = NULL;
 			list->current = NULL;
-			//free (list->head);
+			free (list->head);
 		}
 		else if (list->current == list->head ) {
 			list->head = list->head->next;
 			list->head->prev = NULL;
 			list->current = list->head->next;
-			//free (list->head);
+			free (list->head);
 		}
 		else if (list->current == list->tail) {
 			list->tail = list->tail->prev;
 			list->tail->prev->next = NULL;
 			list->current = NULL;
-			//free (list->tail);
+			free (list->tail);
 	
 		}
 		else {//si el current esta en la lista
 			list->current->prev->next = list->current->next;
 			list->current->next->prev = list->current->prev;
 			list->current = list->current->next;
-			//free (list->current);
+			free (list->current);
 		}
 	}
 	//si no existe el current

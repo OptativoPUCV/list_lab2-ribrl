@@ -133,40 +133,39 @@ void * popBack(List * list) {
 }
 
 void * popCurrent(List * list) {
-	//si sólo hay un elemento
-	if (list->head == list->tail) {
-		list->head = NULL;
-		list->tail = NULL;
-		return (void*)list->head->data;
-		free (list->head);
-		list->current = NULL;
-	}
-	else 
-	{
-	//si el current está al inicio
-		if (list->current == list->head ) {
+	if (list->current != NULL) {
+		if (list->head == list->tail) {
+			list->head = NULL;
+			list->tail = NULL;
+			list->current = NULL;
+			//free (list->head);
+		}
+		else if (list->current == list->head ) {
 			list->head = list->head->next;
 			list->head->prev = NULL;
-			return (void*)list->head->data;
-			free (list->head);
 			list->current = list->head->next;
+			//free (list->head);
 		}
-	//si el current está al final
-		else if (list->current == list->tail){
+		else if (list->current == list->tail) {
 			list->tail = list->tail->prev;
 			list->tail->prev->next = NULL;
-			return (void*)list->tail->data;
-			free (list->tail);
 			list->current = NULL;
-		}else{
-	//si el current está en la lista 
-		list->current->prev->next = list->current->next;
-		list->current->next->prev = list->current->prev;
-		return (void*)list->current->data;
-		free (list->current);
-		list->current = list->current->next;
-    }
+			//free (list->tail);
+	
+		}
+		else {//si el current esta en la lista
+			list->current->prev->next = list->current->next;
+			list->current->next->prev = list->current->prev;
+			list->current = list->current->next;
+			//free (list->current);
+		}
 	}
+	//si no existe el current
+	else 
+	{
+		return NULL;
+	}
+	return list->current;
 }
 
 void cleanList(List * list) {
